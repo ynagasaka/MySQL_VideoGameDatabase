@@ -1,0 +1,133 @@
+use iti330_grp3;
+
+delete from award;
+delete from platform_has_game;
+delete from platform;
+delete from game;
+delete from mode;
+delete from type_of_mode;
+delete from publisher;
+delete from developer;
+
+#values for developer
+insert into developer (developerID, developerName, location, developerType) 
+	values (1, "Rare", "Twycross, England", "AAA"),
+	(2, "Square Enix", "Tokyo, Japan", "AAA"),
+	(3, "Nintendo EPD", "Tokyo, Japan", "AAA" ),
+	(4, "Electronic Arts Inc", "California, United States", "AAA"),
+	(5, "Sabotage Studio", "Quebec, Canada", "Indie" ),
+	(6, "Rockstar North", "Edinburgh, Scotland", "AAA"),
+	(7, "Bioware", "Alberta, Canada", "AAA"),
+	(8, "Nintendo EAD", "Tokyo, Japan", "AAA"),
+	(9, "Sonic Team", "Tokyo, Japan", "AAA"),
+    (10, "FreeStyleGames", "Leamington Spa, England", "AAA"),
+    (11, "Retro Studios", "Texas, United States", "AAA"),
+    (12, "Playdead ApS", "Copenhagen, Denmark", "Indie"),
+    (13, "Bungie", "Washington, United States", "AAA"),
+    (14, "Trinket Studios", "Illinois, United States", "Indie");
+
+#values for publisher
+insert into publisher (publisherID, publisherName, location) 
+	values (1, "Nintendo", "Tokyo, Japan"),
+	(2, "Square Enix", "Tokyo, Japan"),
+	(3, "Devolver Digital","Texas, United States"),
+	(4, "Electronic Arts Inc", "California, United States"),
+	(5, "Activision", "California, United States"),
+	(6, "Capcom", "Osaka, Japan"),
+	(7, "Ubisoft", "Montreuil, France"),
+	(8, "Bandai Namco Entertainment Inc.", "Tokyo, Japan"),
+	(9, "Rockstar Games", "New York, United States"),
+	(10, "Sega", "Tokyo, Japan"),
+    (11, "Microsoft Game Studios", "Redmond, Washington"),
+    (12, "Adult Swim", "Georgia, United States");
+    
+#values for type_of_mode
+insert into type_of_mode (typeID, modeType) 
+	values (1, "Singleplayer"),
+	(2, "Multiplayer");
+    
+#values for mode
+insert into mode (modeID, typeID ) 
+	values (1, 1),
+	(2, 2);
+    
+#values for game
+insert into game (title, genre, rating, releaseDate, dlc, sales, gameDeveloper, gamePublisher, gameMode)
+	values ("GoldenEye 007", "FPS", "Teen", "1997-08-25", 0, "8090000", 1, 1, 2),
+	("Kingdom Hearts II", "RPG", "Everyone 10+", "2006-03-28", 0, "4330000", 2, 2, 1),
+	("The Legend of Zelda: Breath of the Wild", "RPG", "Teen", "2017-03-03", 1, "11680000", 3, 1, 1),
+	("The Messenger", "Platformer", "Teen", "2018-08-30", 0, "8090000", 5, 3, 1),
+	("Anthem", "RPG", "Teen", "2019-02-22", 1, "100000000", 7, 4, 2),  
+	("Grand Theft Auto IV", "Action", "Mature", "2008-04-29", 1, "500000000", 6, 9, 1),
+	("Red Dead Redemption 2", "Action", "Mature", "2018-10-26", 0, "13940000", 6, 9, 1),
+	("Super Mario 64", "Platformer", "Everyone", "1996-06-23", 0, "11910000", 8, 1, 1),
+	("Pokemon Stadium", "Role-playing", "Everyone", "2000-02-29", 0, "5460000", 8, 1, 2),
+	("Sonic the Hedgehog", "Platformer", "Everyone", "1991-06-23", 0, "15000000", 9, 10, 1),
+	("Kingdom Hearts Birth By Sleep", "Role-playing", "Everyone 10+","2010-09-07", 0, "2080000", 2, 2, 1),
+	("DJ Hero 2", "Music", "Teen", "2010-10-19", "10", "1100000", 10, 5, 2),
+    ("Metroid Prime", "FPS", "Teen", "2002-11-17", 0, "2840000", 11, 1, 1),
+    ("Limbo", "Platformer", "Teen", "2010-07-21", 0, "34000000", 12, 11, 1), 
+    ("Halo 2", "FPS", "Mature", "2004-11-09", 1, "1700000", 13, 11, 2),
+    ("Battle Chef Brigade", "Action", "Everyone", "2017-11-20", 3, "70000000", 14, 12, 2);
+
+#values for platform
+insert into platform (brandName, price, producer, generation, platformType)
+	values ("Nintendo 64", "199", "Nintendo", "5", "Home"),
+    ("Nintendo Gamecube", "199", "Nintendo", "6", "Home"),
+	("Nintendo Wii", "250", "Nintendo", "7", "Home"),
+	("Nintendo Switch", "299", "Nintendo", "8", "Hybrid"),
+	("Wii U", "349", "Nintendo", "8", "Home"),
+	("PlayStation 2", "299", "Sony", "6", "Home"),
+	("PlayStation 3", "499", "Sony", "7", "Home"),
+	("PlayStation 4", "399", "Sony", "8", "Home"),
+    ("Xbox", "299", "Microsoft", "6", "Home"),
+	("Xbox 360", "299", "Microsoft", "7", "Home"),
+	("Xbox One", "499", "Microsoft", "8", "Home"),
+	("Sega Genesis", "189", "Sega", "4", "Home"),
+	("PlayStation Portable", "249", "Sony", "7", "Handheld"),
+	("PC", "800", "Microsoft", "8", "Home");
+
+#values for platform_has_game
+insert into platform_has_game (platform_brandName, game_title)
+	values ("Nintendo 64", "GoldenEye 007"),
+	("PlayStation 2", "Kingdom Hearts II"),
+	("Nintendo Switch", "The Legend of Zelda: Breath of The Wild"),
+	("Wii U", "The Legend of Zelda: Breath of The Wild"),
+	("Nintendo Switch", "The Messenger"),
+	("PlayStation 4", "The Messenger"),
+	("PlayStation 4", "Anthem"),
+	("PC", "Anthem"),
+	("PlayStation 3", "Grand Theft Auto IV"),
+	("Xbox 360", "Grand Theft Auto IV"),
+	("Xbox One", "Red Dead Redemption 2"),
+	("PlayStation 4", "Red Dead Redemption 2"),
+	("Nintendo 64", "Super Mario 64"),
+	("Nintendo 64", "Pokemon Stadium"),
+	("Sega Genesis", "Sonic the Hedgehog"),
+	("PlayStation Portable", "Kingdom Hearts Birth By Sleep"),
+    ("Nintendo Wii", "DJ Hero 2"),
+    ("Playstation 3", "DJ Hero 2"),
+    ("Xbox 360", "DJ Hero 2"),
+    ("Nintendo Gamecube", "Metroid Prime"),
+    ("Playstation 3", "Limbo"),
+	("Xbox 360", "Limbo"),
+	("Xbox One", "Limbo"),
+	("Playstation 4", "Limbo"),
+	("Nintendo Switch", "Limbo"),
+    ("Xbox", "Halo 2"),
+    ("Nintendo Switch", "Battle Chef Brigade"),
+	("PlayStation 4", "Battle Chef Brigade"),
+	("PC", "Battle Chef Brigade");
+
+#values for award
+insert into award (awardID, awardYear, awardName, awardType, gameTitle, gameDev, gamePub) 
+	values (1, "2018", "The Game Awards", "Best Debut Indie Game", "The Messenger", 5, 3),
+	(2, "2008", "Game of the Year", "Time Magazine", "Grand Theft Auto IV", 6, 9), 
+	(3, "2017", "Game of the Year", "Time Magazine", "The Legend of Zelda: Breath of the Wild", 3, 1),
+    (4, "2018", "Best Soundtrack", "The Game Awards", "Red Dead Redemption 2", 6, 9),
+    (5, "2010", "Best Soundtrack", "Spike", "DJ Hero 2", 10, 5),
+    (6, "2005", "Game of the Year", "Famitsu", "Kingdom Hearts II", 2, 2), 
+	(7, "2002", "Game Developers Choice Awards", "Game Developers Conference", "Metroid Prime", 11, 1),
+	(8, "2010", "Excellence in Visual Art", "Independent Games Festival", "Limbo", 12, 11),
+    (9, "2003", "Most Anticipated", "Spike", "Halo 2", 13, 11),
+    (10, "2015", "Indie Game Awards", "Reboot", "Battle Chef Brigade", 14, 12);

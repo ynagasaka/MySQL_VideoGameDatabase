@@ -1,0 +1,123 @@
+use iti330_grp3;
+
+drop table if exists platform_has_game;
+drop table if exists platform;
+drop table if exists award; 
+drop table if exists game;
+drop table if exists mode;
+drop table if exists type_of_mode; 
+drop table if exists publisher;
+drop table if exists developer;
+
+#creates table for developer
+create table if not exists developer(
+    	developerID int(11) primary key not null,
+    	developerName varchar(45) not null,
+    	location varchar(45) not null,
+    	developerType varchar(45) not null
+)engine = InnoDB;
+
+#creates table for publisher
+create table if not exists publisher(
+	publisherID int(11) primary key not null,
+   	publisherName varchar(45) not null,
+    	location varchar(45) not null
+)engine = InnoDB;
+
+#creates table for type_of_mode
+create table if not exists type_of_mode (
+	typeID int(11) primary key not null,
+    	modeType varchar(45) not null
+)engine = InnoDB;
+
+#creates table for mode
+create table if not exists mode(
+	modeID int(11) primary key not null,
+    	typeID int(11) not null,
+    	constraint typeID
+		foreign key (typeID)
+			references type_of_mode(typeID)
+)engine = InnoDB;
+
+#creates table for game
+create table if not exists game(
+    	title varchar(45) primary key not null,
+    	genre varchar(45) not null,
+    	rating varchar(45) not null,
+    	releaseDate date not null,
+    	dlc int(11) not null,
+    	sales int(11) not null,
+    	gameDeveloper int(11) not null,
+    	gamePublisher int(11) not null,
+    	gameMode int(11) not null,
+    	constraint gameDeveloper
+		foreign key (gameDeveloper)
+			references developer(developerID),
+	constraint gamePublisher
+		foreign key (gamePublisher)
+			references publisher(publisherID),
+	constraint gameMode
+		foreign key (gameMode)
+			references mode(modeID)
+)engine = InnoDB;
+
+#creates table for award
+create table if not exists award(
+	awardID int(11) primary key not null,
+    	awardYear varchar(45) not null,
+    	awardName varchar(45) not null,
+    	awardType varchar(45) not null,
+    	gameTitle varchar(45) not null,
+    	gameDev int(11) not null,
+    	gamePub int(11) not null,
+	constraint gameTitle
+		foreign key (gameTitle)
+			references game(Title),
+	constraint gameDEV
+		foreign key (gameDEV)
+			references developer(developerID),
+	constraint gamePUB
+		foreign key (gamePUB)
+			references publisher(publisherID)
+)engine = InnoDB;
+
+#creates table for platform
+create table if not exists platform (
+	brandName varchar(45) primary key not null, 
+    	price int(11) not null,
+    	producer varchar(45) not null,
+    	generation int(11) not null,
+    	platformType varchar(45) not null
+)engine = InnoDB;
+
+#creates table for platform_has_game
+create table if not exists platform_has_game (
+	platform_brandName varchar(45) not null,
+    	game_title varchar(45) not null,
+    	constraint fk_platform
+		foreign key (platform_brandName)
+			references platform(brandName),
+	constraint fk_game
+		foreign key (game_title)
+			references game(title),
+	primary key (platform_brandName, game_title)
+)engine = InnoDB;
+
+describe developer;
+describe publisher;
+describe award;
+describe type_of_mode;
+describe mode;
+describe game;
+describe platform;
+describe platform_has_game;
+
+#show tables;
+#show columns from developer;
+#show columns from publisher;
+#show columns from award;
+#show columns from type_of_mode;
+#show columns from mode;
+#show columns from game;
+#show columns from platform;
+#show columns from platform_has_game;
